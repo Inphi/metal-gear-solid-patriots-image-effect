@@ -57,11 +57,11 @@ def contrast(image, maxIntensity=100, phi=1, theta=1):
     """Increase contrast."""
     image = image * 0.75
     image = (maxIntensity / phi) * (image / (maxIntensity / theta)) ** 0.5
-    return cv2.normalize(image, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+    return cv2.normalize(image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
 
 def normalize(image):
     """Normalize image after adding noise or other values."""
-    return cv2.normalize(image, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+    return cv2.normalize(image, None, alpha=0, beta=1, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_32F)
 
 def median_filter(image, blur):
     """Apply a combination of random noise and bluring."""
@@ -84,7 +84,7 @@ def sepia(image):
                                   [0.272, 0.534, 0.131]])
     sepia_image = cv2.transform(image, sepia_transform)
     # I think this is just a color transformation to account for sepia
-    sepia_image = cv2.cvtColor(sepia_image, cv2.cv.CV_RGB2BGR)
+    sepia_image = cv2.cvtColor(sepia_image, cv2.COLOR_RGB2BGR)
     return sepia_image
 
 def face_noise_filter(image):
